@@ -5,6 +5,8 @@ This extension use picturefill.js as a base for loading different image sizes.
 
 **URL:** [https://github.com/scottjehl/picturefill](https://github.com/scottjehl/picturefill)
 
+- - -
+
 ## Usage ##
 
 ```php
