@@ -1,6 +1,6 @@
 <?php /*
 
-# Image aliases used in your siteaccess
+# Image aliases used in ngresponsiveimages
 
 [AliasSettings]
 AliasList[]=default
