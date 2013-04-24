@@ -3,6 +3,8 @@ ngresponsiveimages
 
 This extension use picturefill.js as a base for loading different image sizes.
 
+**URL:** [http://scottjehl.github.com/picturefill/](http://scottjehl.github.com/picturefill/)
+
 ## Usage ##
 
 ```php
