@@ -1,4 +1,5 @@
-{* ngresponsiveimages image. *}
+{* ngresponsiveimages image *}
+
 {*
 Input:
  image_class - Which image alias to show, default is large
@@ -12,7 +13,7 @@ Input:
  border_size   - Size of border around image, default is 0
 *}
 {default image_class=large
-         css_class_wrapper=false()
+         css_class=false()
          alignment=false()
          link_to_image=false()
          href=false()
@@ -24,57 +25,32 @@ Input:
          margin_size=''
          alt_text=''
          title=''
-         css_class=false()}
-{*if is_set($responsive)}
-{ezscript_require( array( 'matchmedia.js', 'picturefill.js' ) )}
-    {if ezini_hasvariable('responsive', 'Class', 'ngimage.ini')}
-        {def $bs_images = array()}
-        {foreach ezini('responsive', 'Class', 'ngimage.ini') as $bs_class}
-            {if and(ezini_hasvariable($bs_class, 'ImageAlias', 'ngimage.ini'), ezini_hasvariable($bs_class, 'MinWidth', 'ngimage.ini'))}
-                {set $bs_images = $bs_images|append( hash($bs_class, hash(
-                        'image_class', ezini($bs_class, 'ImageAlias', 'ngimage.ini'),
-                        'min_width', ezini($bs_class, 'MinWidth', 'ngimage.ini') ) ) )}
-                <div data-src={$image.url|ezroot} data-media="(min-width: 400px)"></div>
+         css_class_wrapper=false()}
 
-            {/if}
-        {/foreach}
-    {/if}
-{/if}
-{$bs_images|dump(show,3)*}
-{*iz inija povuci responsive tipove*}
-{*foreach*}
-{*kreirati set-block sa slikama i fallback imageom*}
-{*ispucati  dolje kod slike*}
-
-{def $image_content = $attribute.content}
+{let image_content = $attribute.content}
 
 {if $image_content.is_valid}
 
-    {if is_set($responsive)}
-    {ezscript_require( array( 'matchmedia.js', 'picturefill.js' ) )}
-        {if ezini_hasvariable('Responsive', 'Class', 'ngimage.ini')}
-            {*def $bs_images = array()*}
-            {set-block variable=$responsive_images}
-            {foreach ezini('Responsive', 'Class', 'ngimage.ini') as $bs_class}
-                {if ezini_hasvariable($bs_class, 'ImageAlias', 'ngimage.ini')}
-                    {*set $bs_images = $bs_images|append( hash($bs_class, hash(
-                            'image_class', ezini($bs_class, 'ImageAlias', 'ngimage.ini'),
-                            'min_width', ezini($bs_class, 'MinWidth', 'ngimage.ini') ) ) )*}
-                    <div data-src={$image_content[ezini($bs_class, 'ImageAlias', 'ngimage.ini')].url|ezroot}{if ezini_hasvariable($bs_class, 'MinWidth', 'ngimage.ini')} data-media="(min-width: {ezini($bs_class, 'MinWidth', 'ngimage.ini')}px)"{/if}></div>
-
-                {/if}
-            {/foreach}
-
-            {/set-block}
-        {/if}
-    {/if}
-
-    {def $image        = $image_content[$image_class]
-         $inline_style = ''}
+    {let image        = $image_content[$image_class]
+         inline_style = ''}
 
     {if $link_to_image}
         {set href = $image_content['original'].url|ezroot}
     {/if}
+
+    {if is_set( $responsive )}
+        {ezscript_require( array( 'matchmedia.js', 'picturefill.js' ) )}
+        {if ezini_hasvariable( 'Responsive', 'Class', 'ngimage.ini' )}
+            {set-block variable=$responsive_images}
+                {foreach ezini( 'Responsive', 'Class', 'ngimage.ini' ) as $responsive_class}
+                    {if ezini_hasvariable( $responsive_class, 'ImageAlias', 'ngimage.ini' )}
+                        <div data-src={$image_content[ezini( $responsive_class, 'ImageAlias', 'ngimage.ini' )].url|ezroot}{if ezini_hasvariable( $responsive_class, 'MinWidth', 'ngimage.ini' )} data-media="(min-width: {ezini( $responsive_class, 'MinWidth', 'ngimage.ini' )}px)"{/if}></div>
+                    {/if}
+                {/foreach}
+            {/set-block}
+        {/if}
+    {/if}
+
     {switch match=$alignment}
     {case match='left'}
         <div class="imageleft">
@@ -106,12 +82,14 @@ Input:
         {if $margin_size|trim|ne('')}
             {set $inline_style = concat( $inline_style, 'margin: ', $margin_size, 'px;' )}
         {/if}
-        {if $href}<a href={$href}{if and( is_set( $link_class ), $link_class )} class="{$link_class}"{/if}{if and( is_set( $link_id ), $link_id )} id="{$link_id}"{/if}{if $target} target="{$target}"{/if}{if and( is_set( $link_title ), $link_title )} id="{$link_title|wash}"{/if}>{/if}
-        {if is_set($responsive)}<div data-picture data-alt="{$alt_text|wash(xhtml)}">{$responsive_images}<noscript>{/if}
+        {if $href}<a href={$href}{if and( is_set( $link_class ), $link_class )} class="{$link_class}"{/if}{if and( is_set( $link_id ), $link_id )} id="{$link_id}"{/if}{if $target} target="{$target}"{/if}{if and( is_set( $link_title ), $link_title )} title="{$link_title|wash}"{/if}>{/if}
 
-            <img src={$image.url|ezroot}{if $css_class} class="{$css_class}"{/if}{if $hspace} hspace="{$hspace}"{/if} style="{$inline_style}" alt="{$alt_text|wash(xhtml)}" title="{$title|wash(xhtml)}" />
+        {if is_set( $responsive )}<div data-picture data-alt="{$alt_text|wash(xhtml)}">{$responsive_images}<noscript>{/if}
 
-        {if is_set($responsive)}</noscript></div>{/if}
+        <img src={$image.url|ezroot}{if $css_class} class="{$css_class}"{/if}{if $hspace} hspace="{$hspace}"{/if} style="{$inline_style}" alt="{$alt_text|wash(xhtml)}" title="{$title|wash(xhtml)}" />
+
+        {if is_set( $responsive )}</noscript></div>{/if}
+
         {if $href}</a>{/if}
     {/if}
 
@@ -129,10 +107,10 @@ Input:
     {case/}
     {/switch}
 
-    {undef $image}
+    {/let}
 
 {/if}
 
-{undef $image_content}
+{/let}
 
 {/default}
