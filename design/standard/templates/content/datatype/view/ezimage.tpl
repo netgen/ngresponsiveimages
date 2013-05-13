@@ -5,6 +5,7 @@ Input:
  image_class - Which image alias to show, default is large
  css_class     - Optional css class to wrap around the <img> tag, the
                  class will be placed in a <div> tag.
+ css_image_class - Optional css class to apply to <img> tag.
  alignment     - How to align the image, use 'left', 'right' or false().
  link_to_image - boolean, if true the url_alias will be fetched and
                  used as link.
@@ -25,7 +26,7 @@ Input:
          margin_size=''
          alt_text=''
          title=''
-         css_class_wrapper=false()}
+         css_image_class=false()}
 
 {let image_content = $attribute.content}
 
@@ -61,8 +62,8 @@ Input:
     {case/}
     {/switch}
 
-    {if $css_class_wrapper}
-        <div class="{$css_class_wrapper|wash}">
+    {if $css_class}
+        <div class="{$css_class|wash}">
     {/if}
 
     {if and( is_set( $image ), $image )}
@@ -86,14 +87,14 @@ Input:
 
         {if is_set( $responsive )}<div data-picture data-alt="{$alt_text|wash(xhtml)}">{$responsive_images}<noscript>{/if}
 
-        <img src={$image.url|ezroot}{if $css_class} class="{$css_class}"{/if}{if $hspace} hspace="{$hspace}"{/if} style="{$inline_style}" alt="{$alt_text|wash(xhtml)}" title="{$title|wash(xhtml)}" />
+        <img src={$image.url|ezroot}{if $css_image_class} class="{$css_image_class}"{/if}{if $hspace} hspace="{$hspace}"{/if} style="{$inline_style}" alt="{$alt_text|wash(xhtml)}" title="{$title|wash(xhtml)}" />
 
         {if is_set( $responsive )}</noscript></div>{/if}
 
         {if $href}</a>{/if}
     {/if}
 
-    {if $css_class_wrapper}
+    {if $css_class}
         </div>
     {/if}
 
