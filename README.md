@@ -9,20 +9,22 @@ This extension use picturefill.js as a base for loading different image sizes.
 
 ## Usage ##
 
-```php
+```
 {attribute_view_gui attribute=$node.data_map.image image_class=default responsive}
 ```
 
 ## Options ##
 
-* __image_class__ - fallback for browsers without jscript
-* __responsive__ - activate image responsiveness
+* `image_class` - fallback for browsers without javascript
+* `responsive` - activate image responsiveness
 
 
 ## ngresponsiveimages.ini ##
-In ngresponsiveimages.ini you need to map the responsive classes with the image aliases in you eZ Publish installation, and min width when current image alias will be used. In this example desktop alias will be used for resolution greater than 767px.
+In `ngresponsiveimages.ini`, you need to map the responsive classes to the image aliases in you eZ Publish installation. You also need to define the minimum width when the current image alias will be used.
 
-```php
+In the following example, desktop alias will be used for resolutions greater than 767px:
+
+```ini
 [Responsive]
 Class[]
 Class[]=Desktop
@@ -32,10 +34,14 @@ ImageAlias=desktop
 MinWidth=768
 ```
 
-## Notice ##
-__This extension creates 4 additional image aliases (default, desktop, tablet and mobile).__
-You can map your own aliases and delete image.ini.append.php from this extension.
+## Installation instructions ##
+
+* Activate the extension
+
+* Copy and uncomment image aliases from provided example `image.ini` to `image.ini` in your project extension. You can ofcouse map your own aliases instead of using the example ones.
+
+* Copy `ngresponsiveimages.ini` INI file to `ngresponsiveimages.ini.append.php` in your project extension and configure image aliases and responsive breakpoints to suit your needs.
 
 ## Author ##
 
-Mario Ivančić
+Netgen & Mario Ivančić
