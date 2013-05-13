@@ -1,42 +1,16 @@
 <?php
 
-/**
- * @package ngresponsiveimages
- * @author  Mario Ivancic <mario@netgen.hr>
- **/
-//
-// ## BEGIN COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-// SOFTWARE NAME: ngswitchuser
-// SOFTWARE RELEASE: 1.2.2
-// COPYRIGHT NOTICE: Copyright (C) 2010-2012 Netgen d.o.o.
-// SOFTWARE LICENSE: GNU General Public License v2.0
-// NOTICE: >
-//   This program is free software; you can redistribute it and/or
-//   modify it under the terms of version 2.0  of the GNU General
-//   Public License as published by the Free Software Foundation.
-//
-//   This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//   GNU General Public License for more details.
-//
-//   You should have received a copy of version 2.0 of the GNU General
-//   Public License along with this program; if not, write to the Free
-//   Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
-//   MA 02110-1301, USA.
-// ## END COPYRIGHT, LICENSE AND WARRANTY NOTICE ##
-//
-
 class ngresposiveimagesInfo
 {
-	public static function info()
-	{
-		return array(
-			'Name'      => '<a href="http://projects.ez.no/ngresponsiveimages">ngresponsiveimages</a> extension',
-			'Version'   => '1.0',
-			'Copyright' => 'Copyright (&copy;) 2010-2012 <a href="http://netgen.hr/eng" target="_blank">Netgen d.o.o.</a>',
-			'License'   => 'GNU General Public License v2.0'
-		);
-	}
+    public static function info()
+    {
+        return array(
+            'Name' => '<a href="http://projects.ez.no/ngresponsiveimages">ngresponsiveimages</a> extension',
+            'Version' => '1.0',
+            'Copyright' => 'Copyright (&copy;) 2010-2013 <a href="http://www.netgenlabs.com" target="_blank">Netgen</a>',
+            'License' => 'GNU General Public License v2.0'
+        );
+    }
 }
+
 ?>

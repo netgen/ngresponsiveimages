@@ -1,5 +1,5 @@
-ngresponsiveimages
-==========================
+Netgen Responsive Images
+========================
 
 This extension use picturefill.js as a base for loading different image sizes.
 
@@ -20,7 +20,7 @@ This extension use picturefill.js as a base for loading different image sizes.
 
 
 ## ngresponsiveimages.ini ##
-In ngresponsiveimages.ini you need to map the responsive classes with the imagealiases in you ezpublish installation, and min width when current image alias will be used. In this example desktop alias will be used for resolution greather 767px.
+In ngresponsiveimages.ini you need to map the responsive classes with the image aliases in you eZ Publish installation, and min width when current image alias will be used. In this example desktop alias will be used for resolution greater than 767px.
 
 ```php
 [Responsive]
@@ -33,7 +33,7 @@ MinWidth=768
 ```
 
 ## Notice ##
-__This extension creates 4 additional imageAliases (default, desktop, tablet and mobile).__
+__This extension creates 4 additional image aliases (default, desktop, tablet and mobile).__
 You can map your own aliases and delete image.ini.append.php from this extension.
 
 ## Author ##

@@ -27,5 +27,4 @@ Filters[]=geometry/crop=480;320;0;0
 Reference=original
 Filters[]=geometry/scalewidthdownonly=768
 Filters[]=geometry/crop=768;511;0;0
-
 */ ?>
