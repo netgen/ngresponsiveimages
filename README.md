@@ -18,7 +18,7 @@ This extension uses [`picturefill.js`](https://github.com/scottjehl/picturefill)
 
 
 ## ngresponsiveimages.ini ##
-In `ngresponsiveimages.ini`, you need to map the responsive classes to the image aliases in you eZ Publish installation. You also need to define the minimum width when the current image alias will be used.
+In `ngresponsiveimages.ini`, you need to map the responsive classes to the image aliases in your eZ Publish installation. You also need to define the minimum width when the current image alias will be used.
 
 In the following example, desktop alias will be used for resolutions greater than 767px:
 
