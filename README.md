@@ -19,8 +19,8 @@ This extension use picturefill.js as a base for loading different image sizes.
 * __responsive__ - activate image responsiveness
 
 
-## ngimage.ini ##
-In ngimage.ini you need to map the responsive classes with the imagealiases in you ezpublish installation, and min width when current image alias will be used. In this example desktop alias will be used for resolution greather 767px.
+## ngresponsiveimages.ini ##
+In ngresponsiveimages.ini you need to map the responsive classes with the imagealiases in you ezpublish installation, and min width when current image alias will be used. In this example desktop alias will be used for resolution greather 767px.
 
 ```php
 [Responsive]
