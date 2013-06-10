@@ -1,0 +1,16 @@
+{
+    "name": "netgen/ngresponsiveimages",
+    "description": "eZ Publish 4 extension that eases creation and usage of responsive images by leveraging eZ Publish image aliases",
+    "type": "ezpublish-legacy-extension",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Netgen",
+            "email": "info@netgen.hr"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "ezsystems/ezpublish-legacy-installer": "*"
+    }
+}
