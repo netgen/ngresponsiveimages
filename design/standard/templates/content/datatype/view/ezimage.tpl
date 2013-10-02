@@ -40,16 +40,23 @@ Input:
     {/if}
 
     {if is_set( $responsive )}
+        {def $override_image_aliases = array()}
         {ezscript_require( array( 'matchmedia.js', 'picturefill.js' ) )}
         {if ezini_hasvariable( 'Responsive', 'Screen', 'ngresponsiveimages.ini' )}
             {set-block variable = $responsive_images}
                 {foreach ezini( 'Responsive', 'Screen', 'ngresponsiveimages.ini' ) as $responsive_screen}
                     {if ezini_hasvariable( $responsive_screen, 'ImageAlias', 'ngresponsiveimages.ini' )}
-                        <div data-src={$image_content[ezini( $responsive_screen, 'ImageAlias', 'ngresponsiveimages.ini' )].url|ezroot}{if ezini_hasvariable( $responsive_screen, 'MinWidth', 'ngresponsiveimages.ini' )} data-media="(min-width: {ezini( $responsive_screen, 'MinWidth', 'ngresponsiveimages.ini' )|wash}px)"{/if}></div>
+                        {set $override_image_aliases = ezini( $responsive_screen, 'OverrideImageAlias', 'ngresponsiveimages.ini' )}
+                        {if and( is_set( $override_image_aliases[$image_class] ),$override_image_aliases[$image_class]|count )}
+                            <div data-src={$image_content[$override_image_aliases[$image_class]].url|ezroot}{if ezini_hasvariable( $responsive_screen, 'MediaQueryExpression', 'ngresponsiveimages.ini' )} data-media="{ezini( $responsive_screen, 'MediaQueryExpression', 'ngresponsiveimages.ini' )|wash}"{/if}></div>
+                        {else}
+                            <div data-src={$image_content[ezini( $responsive_screen, 'ImageAlias', 'ngresponsiveimages.ini' )].url|ezroot}{if ezini_hasvariable( $responsive_screen, 'MediaQueryExpression', 'ngresponsiveimages.ini' )} data-media="{ezini( $responsive_screen, 'MediaQueryExpression', 'ngresponsiveimages.ini' )|wash}"{/if}></div>
+                        {/if}
                     {/if}
                 {/foreach}
             {/set-block}
         {/if}
+        {undef $override_image_aliases}
     {/if}
 
     {switch match=$alignment}
