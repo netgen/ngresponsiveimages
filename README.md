@@ -29,7 +29,7 @@ Screen[]=Desktop
 
 [Desktop]
 ImageAlias=desktop
-MinWidth=768
+MediaQueryExpression=(min-width: 768px)
 ```
 
 ## Installation instructions ##
