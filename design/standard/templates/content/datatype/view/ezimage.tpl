@@ -57,6 +57,7 @@ Input:
             {/set-block}
         {/if}
         {undef $override_image_aliases}
+        {set $css_image_class = concat( $css_image_class, ' ', '.img-responsive' )}
     {/if}
 
     {switch match=$alignment}
