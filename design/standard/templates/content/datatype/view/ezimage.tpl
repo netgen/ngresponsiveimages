@@ -48,9 +48,9 @@ Input:
                     {if ezini_hasvariable( $responsive_screen, 'ImageAlias', 'ngresponsiveimages.ini' )}
                         {set $override_image_aliases = ezini( $responsive_screen, 'OverrideImageAlias', 'ngresponsiveimages.ini' )}
                         {if and( is_set( $override_image_aliases[$image_class] ),$override_image_aliases[$image_class]|count )}
-                            <div data-src={$image_content[$override_image_aliases[$image_class]].url|ezroot}{if ezini_hasvariable( $responsive_screen, 'MediaQueryExpression', 'ngresponsiveimages.ini' )} data-media="{ezini( $responsive_screen, 'MediaQueryExpression', 'ngresponsiveimages.ini' )|wash}"{/if}></div>
+                            <span data-src={$image_content[$override_image_aliases[$image_class]].url|ezroot}{if ezini_hasvariable( $responsive_screen, 'MediaQueryExpression', 'ngresponsiveimages.ini' )} data-media="{ezini( $responsive_screen, 'MediaQueryExpression', 'ngresponsiveimages.ini' )|wash}"{/if}></span>
                         {else}
-                            <div data-src={$image_content[ezini( $responsive_screen, 'ImageAlias', 'ngresponsiveimages.ini' )].url|ezroot}{if ezini_hasvariable( $responsive_screen, 'MediaQueryExpression', 'ngresponsiveimages.ini' )} data-media="{ezini( $responsive_screen, 'MediaQueryExpression', 'ngresponsiveimages.ini' )|wash}"{/if}></div>
+                            <span data-src={$image_content[ezini( $responsive_screen, 'ImageAlias', 'ngresponsiveimages.ini' )].url|ezroot}{if ezini_hasvariable( $responsive_screen, 'MediaQueryExpression', 'ngresponsiveimages.ini' )} data-media="{ezini( $responsive_screen, 'MediaQueryExpression', 'ngresponsiveimages.ini' )|wash}"{/if}></span>
                         {/if}
                     {/if}
                 {/foreach}
@@ -92,11 +92,11 @@ Input:
         {/if}
         {if $href}<a href={$href}{if and( is_set( $link_class ), $link_class )} class="{$link_class}"{/if}{if and( is_set( $link_id ), $link_id )} id="{$link_id}"{/if}{if $target} target="{$target}"{/if}{if and( is_set( $link_title ), $link_title )} title="{$link_title|wash}"{/if}>{/if}
 
-        {if is_set( $responsive )}<div data-picture data-alt="{$alt_text|wash(xhtml)}">{$responsive_images}<noscript>{/if}
+        {if is_set( $responsive )}<span data-picture data-alt="{$alt_text|wash(xhtml)}">{$responsive_images}<noscript>{/if}
 
         <img src={$image.url|ezroot}{if $css_image_class} class="{$css_image_class}"{/if}{if $hspace} hspace="{$hspace}"{/if} style="{$inline_style}" alt="{$alt_text|wash(xhtml)}" title="{$title|wash(xhtml)}" />
 
-        {if is_set( $responsive )}</noscript></div>{/if}
+        {if is_set( $responsive )}</noscript></span>{/if}
 
         {if $href}</a>{/if}
     {/if}
