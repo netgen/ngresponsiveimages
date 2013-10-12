@@ -35,9 +35,9 @@ Input:
 {/if}
 
 {if $image_content.is_valid}
-    {if and(is_set( $responsive_image_class ), $responsive_image_class|count )}
+    {*if and(is_set( $responsive_image_class ), $responsive_image_class|count )}
         {set $image_class = $responsive_image_class}
-    {/if}
+    {/if*}
     {if and(is_set( $responsive_image_class ), $responsive_image_class|count, ezini_hasvariable( $responsive_image_class, 'DefaultMap', 'ngresponsiveimages.ini' ), is_set($responsive_disabled)|not )}
         {def $mq_expressions = array()}
         {if ezini_hasvariable( 'Responsive', 'MediaQueryExpressions', 'ngresponsiveimages.ini' )}
