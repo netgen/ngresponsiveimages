@@ -103,7 +103,7 @@ Input:
         {if $href}</a>{/if}
     {/if}
 
-    {if $css_class}
+    {if and( $css_class, $css_class|count )}
         </div>
     {/if}
 
