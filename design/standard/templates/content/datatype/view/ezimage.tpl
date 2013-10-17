@@ -78,7 +78,7 @@ Input:
     {/if}
 
     {if $responsive_enabled}
-        {set $css_image_class = $$css_image_class|append(' img-responsive')}
+        {set $css_image_class = $css_image_class|append(' img-responsive')}
     {/if}
 
     {if and( is_set( $image ), $image )}
