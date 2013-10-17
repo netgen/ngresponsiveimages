@@ -26,7 +26,7 @@ Input:
          margin_size=''
          alt_text=''
          title=''
-         css_image_class=false()}
+         css_image_class=''}
 
 {let image_content = $attribute.content}
 {def $responsive_enabled = false()}
