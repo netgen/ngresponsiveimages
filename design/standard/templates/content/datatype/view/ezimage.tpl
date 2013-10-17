@@ -46,16 +46,9 @@ Input:
         {set-block variable = $responsive_images}
             <span data-src={$image_content[ezini( $responsive_image_class, 'DefaultMap', 'ngresponsiveimages.ini' )].url|ezroot}></span>
             {foreach $mq_mappings as $screen => $mq_map_alias}
-
                 {if and( is_set( $mq_expressions[$screen] ), $mq_expressions[$screen]|count )}
-                    {if is_set( $image_content[$mq_map_alias] )}
-                        <span data-src={$image_content[$mq_map_alias].url|ezroot} data-media="{$mq_expressions[$screen]|wash}"></span>
-                    {else}
-                        {* Output error *}
-                        <span error-message="Image alias: {$mq_mappings[$screen]} defined as MediaQueryMappings[{$screen}]  under [{$responsive_image_class}] in ngresponsiveimages.ini isn't defined in image.ini!"></span>
-                    {/if}
+                    <span data-src={$image_content[$mq_map_alias].url|ezroot} data-media="{$mq_expressions[$screen]|wash}"></span>
                 {/if}
-
             {/foreach}
         {/set-block}
         {* add undef *}
@@ -78,7 +71,7 @@ Input:
     {case/}
     {/switch}
 
-    {if $css_class}
+    {if and( $css_class, $css_class|count )}
         <div class="{$css_class|wash}">
     {/if}
 
