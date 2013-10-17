@@ -13,7 +13,7 @@ Input:
                  around the image with href as the link.
  border_size   - Size of border around image, default is 0
 *}
-{default image_class=large
+{default image_class=original
          css_class=false()
          alignment=false()
          link_to_image=false()
