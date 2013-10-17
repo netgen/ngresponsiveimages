@@ -29,6 +29,7 @@ Input:
          css_image_class=false()}
 
 {let image_content = $attribute.content}
+{def $responsive_enabled = false()}
 
 {if and( ezini_hasvariable( 'Responsive', 'AlwaysResponsive', 'ngresponsiveimages.ini' ), ezini( 'Responsive', 'AlwaysResponsive', 'ngresponsiveimages.ini' )|eq('enabled'), is_set( $responsive_image_class )|not )}
     {def $responsive_image_class = $image_class}
@@ -37,6 +38,7 @@ Input:
 {if $image_content.is_valid}
     {if and(is_set( $responsive_image_class ), $responsive_image_class|count, ezini_hasvariable( $responsive_image_class, 'DefaultMap', 'ngresponsiveimages.ini' ), is_set($responsive_disabled)|not )}
         {def $mq_expressions = array()}
+        {set $responsive_enabled = true()}
         {if ezini_hasvariable( 'Responsive', 'MediaQueryExpressions', 'ngresponsiveimages.ini' )}
             {set $mq_expressions = ezini( 'Responsive', 'MediaQueryExpressions', 'ngresponsiveimages.ini' )}
         {/if}
@@ -73,6 +75,10 @@ Input:
 
     {if and( $css_class, $css_class|count )}
         <div class="{$css_class|wash}">
+    {/if}
+
+    {if $responsive_enabled}
+        {set $css_image_class = $$css_image_class|append(' img-responsive')}
     {/if}
 
     {if and( is_set( $image ), $image )}
