@@ -13,7 +13,7 @@ Input:
                  around the image with href as the link.
  border_size   - Size of border around image, default is 0
 *}
-{default image_class=original
+{default image_class=large
          css_class=false()
          alignment=false()
          link_to_image=false()
@@ -30,6 +30,10 @@ Input:
 
 {let image_content = $attribute.content}
 {def $responsive_enabled = false()}
+
+{if is_set( $image_content[$image_class])|not}
+{def $image_class='original'}
+{/if}
 
 {if and( ezini_hasvariable( 'Responsive', 'AlwaysResponsive', 'ngresponsiveimages.ini' ), ezini( 'Responsive', 'AlwaysResponsive', 'ngresponsiveimages.ini' )|eq('enabled'), is_set( $responsive_image_class )|not )}
     {def $responsive_image_class = $image_class}
