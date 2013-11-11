@@ -26,9 +26,14 @@ Input:
          margin_size=''
          alt_text=''
          title=''
-         css_image_class=false()}
+         css_image_class=''}
 
 {let image_content = $attribute.content}
+{def $responsive_enabled = false()}
+
+{if is_set( $image_content[$image_class])|not}
+{def $image_class='original'}
+{/if}
 
 {if and( ezini_hasvariable( 'Responsive', 'AlwaysResponsive', 'ngresponsiveimages.ini' ), ezini( 'Responsive', 'AlwaysResponsive', 'ngresponsiveimages.ini' )|eq('enabled'), is_set( $responsive_image_class )|not )}
     {def $responsive_image_class = $image_class}
@@ -37,6 +42,7 @@ Input:
 {if $image_content.is_valid}
     {if and(is_set( $responsive_image_class ), $responsive_image_class|count, ezini_hasvariable( $responsive_image_class, 'DefaultMap', 'ngresponsiveimages.ini' ), is_set($responsive_disabled)|not )}
         {def $mq_expressions = array()}
+        {set $responsive_enabled = true()}
         {if ezini_hasvariable( 'Responsive', 'MediaQueryExpressions', 'ngresponsiveimages.ini' )}
             {set $mq_expressions = ezini( 'Responsive', 'MediaQueryExpressions', 'ngresponsiveimages.ini' )}
         {/if}
@@ -46,16 +52,9 @@ Input:
         {set-block variable = $responsive_images}
             <span data-src={$image_content[ezini( $responsive_image_class, 'DefaultMap', 'ngresponsiveimages.ini' )].url|ezroot}></span>
             {foreach $mq_mappings as $screen => $mq_map_alias}
-
                 {if and( is_set( $mq_expressions[$screen] ), $mq_expressions[$screen]|count )}
-                    {if is_set( $image_content[$mq_map_alias] )}
-                        <span data-src={$image_content[$mq_map_alias].url|ezroot} data-media="{$mq_expressions[$screen]|wash}"></span>
-                    {else}
-                        {* Output error *}
-                        <span error-message="Image alias: {$mq_mappings[$screen]} defined as MediaQueryMappings[{$screen}]  under [{$responsive_image_class}] in ngresponsiveimages.ini isn't defined in image.ini!"></span>
-                    {/if}
+                    <span data-src={$image_content[$mq_map_alias].url|ezroot} data-media="{$mq_expressions[$screen]|wash}"></span>
                 {/if}
-
             {/foreach}
         {/set-block}
         {* add undef *}
@@ -78,8 +77,12 @@ Input:
     {case/}
     {/switch}
 
-    {if $css_class}
+    {if and( $css_class, $css_class|count )}
         <div class="{$css_class|wash}">
+    {/if}
+
+    {if $responsive_enabled}
+        {set $css_image_class = $css_image_class|append(' img-responsive')|trim()}
     {/if}
 
     {if and( is_set( $image ), $image )}
@@ -110,7 +113,7 @@ Input:
         {if $href}</a>{/if}
     {/if}
 
-    {if $css_class}
+    {if and( $css_class, $css_class|count )}
         </div>
     {/if}
 
