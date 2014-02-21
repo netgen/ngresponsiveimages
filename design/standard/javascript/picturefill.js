@@ -10,17 +10,23 @@ function isIE() {
 	// Enable strict mode
 	"use strict";
 
+	var pictureFillImageProcessed = false;
+
 	w.picturefill = function() {
 		var ps = $('span[data-picture]');
 		// var ps = w.document.getElementsByTagName( "span" );
 
 		if (isIE() && isIE() <= 9) {
 	 		// IE8 workaround
+	 		if( pictureFillImageProcessed ){
+	 			return false;
+	 		}
 	 		for( var i = 0, il = ps.length; i < il; i++ ){
 	 			var picImg = w.document.createElement( "img" );
 	 			picImg.src =  ps[ i ].getElementsByTagName( "span" )[0].getAttribute( "data-src" );
 	 			ps[ i ].appendChild( picImg );
 	 		}
+	 		pictureFillImageProcessed = true;
 	 		return false;
 		}
 
