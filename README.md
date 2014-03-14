@@ -82,6 +82,12 @@ This will output next html for **imagefull** alias:
 
 * Copy `ngresponsiveimages.ini` INI file to `ngresponsiveimages.ini.append.php` in your project extension and configure image aliases and responsive breakpoints to suit your needs.
 
+* Add `viewport` meta tag to your page head if not already present:
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+```
+
 ## Author ##
 
 Netgen & Mario Ivančić
