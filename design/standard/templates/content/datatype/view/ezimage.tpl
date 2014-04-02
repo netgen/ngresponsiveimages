@@ -32,7 +32,7 @@ Input:
 {def $responsive_enabled = false()}
 
 {if is_set( $image_content[$image_class])|not}
-{def $image_class='original'}
+    {set $image_class='original'}
 {/if}
 
 {if and( ezini_hasvariable( 'Responsive', 'AlwaysResponsive', 'ngresponsiveimages.ini' ), ezini( 'Responsive', 'AlwaysResponsive', 'ngresponsiveimages.ini' )|eq('enabled'), is_set( $responsive_image_class )|not )}
